@@ -35,7 +35,7 @@ function calcMapQueries(){
   
   var prev="";
   for (var i=0; i<addresses.length; i++){
-      noteCell.setValue("計算中:"+i +"/"+addresses.length);
+      noteCell.setValue("計算中:"+i);
 
     var [home, target] = addresses[i];
 
