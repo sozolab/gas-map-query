@@ -23,7 +23,7 @@ function onUpdate(e){
 
 function calcMapQueries(){
   var noteCell = sheet.getRange(1,7, 1,1);
-  noteCell.setValue("計算中...");
+//  noteCell.setValue("計算中:");
   
   try{
 
@@ -35,6 +35,8 @@ function calcMapQueries(){
   
   var prev="";
   for (var i=0; i<addresses.length; i++){
+      noteCell.setValue("計算中:"+i +"/"+addresses.length);
+
     var [home, target] = addresses[i];
 
     var dist1, dist2;    
