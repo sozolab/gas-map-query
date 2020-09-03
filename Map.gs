@@ -1,4 +1,3 @@
-var ss = SpreadsheetApp.getActiveSpreadsheet()
 
 //GAS version (limit is very low as 200).
 function mapQuery(src, dest, type, result) {
@@ -96,36 +95,4 @@ function mapQuery2(src, dest, type, result){
 //  return elem;
 }
 
-function tmp(){
-  mapQuery3("Tokyo", "Kyoto", "drive", "distance");
-}
 
-//cache version but does not works as a custom function from a Spreadsheet.
-function mapQuery3(src, dest, type, result){
-  var cache = ss.getSheetByName("MapQueryCache");
-  
-  var keys = cache.getRange(2, 1, cache.getLastRow()-1, 1).getValues().flat(); //src, dest, type, result
-  var values = cache.getRange(2, 2, cache.getLastRow()-1, 1).getValues().flat(); //values
-  
-  var key = [src,dest,type, result].join(';');
-  Logger.log(key);
-  
-  var ix = keys.indexOf(key);
-  
-  Logger.log(keys);
-  Logger.log(values);
-  Logger.log(ix);
-  
-  if (ix>=0){//found
-    var value = values[ix];
-  } else {
-    var value = mapQuery2(src, dest, type, result);
-    
-    //ADD new cache
-    var cells = cache.getRange(cache.getLastRow()+1, 1, 1, 2); //key, value cell to add
-    cells.setValues([[key,value]]);
-  }
-  
-  return value;
-
-}
